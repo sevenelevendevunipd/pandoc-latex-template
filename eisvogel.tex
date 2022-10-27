@@ -857,6 +857,7 @@ $endif$
 $endif$
 $endif$
 
+\usepackage{float}
 %%
 %% end added
 %%
@@ -891,42 +892,47 @@ $endif$
 \par
 \noindent
 
-$if(titlepage-background)$
-% The titlepage with a background image has other text spacing and text size
-{
-  \setstretch{2}
-  \vfill
-  \vskip -8em
-  \noindent {\huge \textbf{\textsf{$title$}}}
-  $if(subtitle)$
-  \vskip 1em
-  {\Large \textsf{$subtitle$}}
-  $endif$
-  \vskip 2em
-  \noindent {\Large \textsf{$for(author)$$author$$sep$, $endfor$} \vskip 0.6em \textsf{$date$}}
-  \vfill
-}
-$else$
-{
-  \setstretch{1.4}
-  \vfill
-  \noindent {\huge \textbf{\textsf{$title$}}}
-  $if(subtitle)$
-  \vskip 1em
-  {\Large \textsf{$subtitle$}}
-  $endif$
-  \vskip 2em
-  \noindent {\Large \textsf{$for(author)$$author$$sep$, $endfor$}}
-  \vfill
-}
+
+\setstretch{1.4}
+%\vfill
+\noindent {\huge \textbf{\textsf{$title$}}}
+$if(subtitle)$
+\vskip 1em
+{\Large \textsf{$subtitle$}}
 $endif$
+\vfill
 
 \noindent
 \includegraphics[width=100mm, left]{assets/logo.pdf}
 
+$if(abstract)$
+{\Large Sommario}
+\begin{abstract}
+$abstract$
+\end{abstract}
+\vskip 1em
+$endif$
+
+
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\begin{tabular}{r|l}
+		Responsabile & $responsabile$\vspace{2.5pt}\\
+		Redattori & $for(redattori)$$redattori$$sep$\\&$endfor$\vspace{2.5pt}\\
+		Verificatori & $for(verificatori)$$verificatori$$sep$\\&$endfor$\vspace{2.5pt}\\
+		Uso & $if(docusage)$$docusage$$else$Interno$endif$\vspace{2.5pt}\\
+		Destinatari & $if(destinatari)$$for(destinatari)$$destinatari$$sep$\\&$endfor$$else$Prof. Tullio Vardanega \\&Prof. Riccardo Cardin$endif$\vspace{2.5pt}\\
+		Versione & $if(versione)$$versione$$else$1.0.0$endif$\\
+	\end{tabular}
+\end{table}
+
 $if(titlepage-background)$
 $else$
+$if(hidedate)$
+$else$
 \textsf{$date$}
+$endif$
 $endif$
 \end{flushleft}
 \end{titlepage}
