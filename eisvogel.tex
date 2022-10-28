@@ -871,6 +871,7 @@ $if(beamer)$
 $else$
 $if(titlepage)$
 \begin{titlepage}
+\pagenumbering{gobble}
 $if(titlepage-background)$
 \newgeometry{top=2cm, right=4cm, bottom=3cm, left=4cm}
 $else$
@@ -928,7 +929,6 @@ $endif$
 \end{flushleft}
 \end{titlepage}
 \restoregeometry
-\pagenumbering{arabic} 
 $endif$
 $endif$
 
@@ -979,6 +979,7 @@ $if(toc-own-page)$
 \newpage
 $endif$
 }
+\pagenumbering{arabic}
 $endif$
 $endif$
 $if(lof)$
