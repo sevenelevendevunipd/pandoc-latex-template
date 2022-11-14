@@ -979,7 +979,6 @@ $if(toc-own-page)$
 \newpage
 $endif$
 }
-\pagenumbering{arabic}
 $endif$
 $endif$
 $if(lof)$
@@ -994,6 +993,7 @@ $endif$
 $if(has-frontmatter)$
 \mainmatter
 $endif$
+\pagenumbering{arabic}
 $body$
 
 $if(has-frontmatter)$
