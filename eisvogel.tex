@@ -909,7 +909,7 @@ $endif$
 		Verificatori & $for(verificatori)$$verificatori$$sep$\\&$endfor$\vspace{0.6em}\\
 		Uso & $if(docusage)$$docusage$$else$Interno$endif$\vspace{0.6em}\\
 		Destinatari & $if(destinatari)$$for(destinatari)$$destinatari$$sep$\\&$endfor$$else$Prof. Tullio Vardanega \\&Prof. Riccardo Cardin$endif$\vspace{0.6em}\\
-		Versione & $if(versione)$$versione$$else$1.0.0$endif$\\
+		Versione & $if(versioni)$$if(versione)$\errmessage{Both "versione" and "versioni" specified in metadata}$else$$for(versioni/pairs/pairs/first)$$it.value.key$$endfor$$endif$$elseif(versione)$$versione$$else$1.0.0$endif$\\
 	\end{tabular}
 \end{table}
 
