@@ -936,6 +936,22 @@ $endif$
 %% end titlepage
 %%
 
+$if(versioni)$
+\section*{Registro delle Versioni}
+\begin{center}
+  \begin{longtable}[h]{|r|r|r|p{0.5\textwidth}|}
+      \hline
+      \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Cambiamenti} \\
+      \hline
+    $for(versioni/pairs)$
+        $it.key$ & $it.value.data$ & $it.value.autore$ & $it.value.cambiamenti$ \\
+        \hline
+    $endfor$
+  \end{longtable}
+\end{center}
+\newpage
+$endif$
+
 $if(has-frontmatter)$
 \frontmatter
 $endif$
