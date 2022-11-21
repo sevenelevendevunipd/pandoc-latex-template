@@ -79,6 +79,9 @@ $for(classoption)$
 $endfor$
   ,captions=tableheading
 ]{$if(beamer)$$documentclass$$else$$if(book)$scrbook$else$scrartcl$endif$$endif$}
+$if(pdfa)$
+\usepackage[a-2b,mathxmp]{pdfx}
+$endif$
 $if(beamer)$
 $if(background-image)$
 \usebackgroundtemplate{%
