@@ -865,6 +865,20 @@ $endif$
 %% end added
 %%
 
+$if(has-glossary)$
+\usepackage[style=indexgroup, acronym, toc]{glossaries}
+\setacronymstyle{short-long}
+\deftranslation[to=Italian]{Acronyms}{Acronimi}
+\deftranslation[to=Italian]{Glossary}{Glossario}
+\makenoidxglossaries
+$for(glossary-entries/pairs)$
+  \newglossaryentry{$it.key$}{name={$it.value.name$}, description={$it.value.description$} $if(it.value.plural)$, plural={$it.value.plural$} $endif$ }
+$endfor$
+$for(acronym-entries/pairs)$
+  \newacronym{$it.key$}{$it.value.name$}{$it.value.description$}
+$endfor$
+$endif$
+
 \begin{document}
 
 %%
@@ -1049,6 +1063,12 @@ $else$
 $endif$
 
 $endif$
+
+$if(has-glossary)$
+\newpage
+\printnoidxglossaries
+$endif$
+
 $for(include-after)$
 $include-after$
 
