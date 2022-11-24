@@ -401,8 +401,10 @@ $if(graphics)$
 \makeatother
 $endif$
 $if(links-as-notes)$
-% Make links footnotes instead of hotlinks:
-\DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
+% Make links footnotes+hotlinks instead of just hotlinks:
+\usepackage{letltxmacro}
+\LetLtxMacro{\originalHref}{\href}
+\renewcommand{\href}[2]{\originalHref{#1}{#2}\footnote{\url{#1}}}
 $endif$
 $if(strikeout)$
 $-- also used for underline
@@ -875,7 +877,7 @@ $for(glossary-entries/pairs)$
   \newglossaryentry{$it.key$}{name={$it.value.name$}, description={$it.value.description$} $if(it.value.plural)$, plural={$it.value.plural$} $endif$ }
 $endfor$
 $for(acronym-entries/pairs)$
-  \newacronym{$it.key$}{$it.value.name$}{$it.value.description$}
+  \newacronym$if(it.value.description)$[description={$it.value.description$}]$endif${$it.key$}{$it.value.name$}{$it.value.long$}
 $endfor$
 $endif$
 
@@ -956,12 +958,12 @@ $endif$
 $if(versioni)$
 \section*{Registro delle Versioni}
 \begin{center}
-  \begin{longtable}[h]{|r|r|r|p{0.5\textwidth}|}
+  \begin{longtable}[h]{|l|l|l|p{0.5\textwidth}|}
       \hline
       \textbf{Versione} & \textbf{Data} & \textbf{Autore} & \textbf{Cambiamenti} \\
       \hline
-    $for(versioni/pairs)$
-        $it.key$ & $it.value.data$ & $it.value.autore$ & $it.value.cambiamenti$ \\
+    $for(versioni/pairs/reverse)$
+        \textbf{$it.key$} & \textbf{$it.value.data$} & $it.value.autore$ & $it.value.cambiamenti$ \\
         \hline
     $endfor$
   \end{longtable}
